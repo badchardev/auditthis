@@ -1,0 +1,7 @@
+{
+  "name": "auditthis-electron",
+  "version": "1.0.0",
+  "description": "Electron main process for AuditThis!",
+  "main": "main.js",
+  "type": "commonjs"
+}

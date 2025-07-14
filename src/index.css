@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide all scrollbars completely */
+html, body {
+  overflow: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+/* Ensure the app fills the entire window */
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Hide scrollbars for internal content areas while keeping scroll functionality */
+.scrollable-content {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scrollable-content::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+/* macOS specific optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Optimize for smooth resizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Hardware acceleration for smooth animations */
+.transition-colors,
+.hover\:bg-gray-50:hover,
+.hover\:bg-gray-700:hover,
+.dark .hover\:bg-gray-50:hover,
+.dark .hover\:bg-gray-700:hover {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize scrollable areas for macOS */
+.scrollable-content {
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+/* Smooth transitions during window resize */
+@media (prefers-reduced-motion: no-preference) {
+  .transition-colors {
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Optimize for fullscreen mode on macOS */
+body.fullscreen {
+  padding-top: 0;
+}
+
+/* Prevent layout shift during resize */
+.max-w-7xl {
+  contain: layout style;
+}
+
+/* Optimize table rendering */
+table {
+  table-layout: fixed;
+  contain: layout style;
+}
+
+/* Improve button hover performance */
+button {
+  contain: layout style;
+}
+
+/* Ensure dragging works at all window sizes */
+nav {
+  -webkit-app-region: drag;
+  user-select: none;
+  cursor: default;
+  /* Make the entire nav bar draggable but NOT resizable */
+  width: 100%;
+  position: relative;
+}
+
+nav button,
+nav [role="button"],
+nav input,
+nav select,
+nav textarea,
+nav a,
+nav [tabindex] {
+  -webkit-app-region: no-drag !important;
+  cursor: pointer !important;
+  /* Ensure buttons remain clickable */
+  pointer-events: auto;
+}
+
+/* Specific override for button containers */
+nav .flex.items-center {
+  -webkit-app-region: no-drag;
+  pointer-events: auto;
+}
+
+/* Ensure theme toggle is always clickable */
+nav [aria-label*="mode"] {
+  -webkit-app-region: no-drag !important;
+  cursor: pointer !important;
+  pointer-events: auto;
+}
+
+/* Additional safety for interactive elements */
+nav * {
+  -webkit-app-region: inherit;
+}
+
+nav button *,
+nav [role="button"] *,
+nav input *,
+nav select *,
+nav textarea *,
+nav a *,
+nav [tabindex] * {
+  -webkit-app-region: no-drag;
+  pointer-events: auto;
+}
+
+/* Company selector specific styles */
+nav .company-selector {
+  -webkit-app-region: no-drag !important;
+  pointer-events: auto;
+}
+
+nav .company-selector * {
+  -webkit-app-region: no-drag !important;
+  pointer-events: auto;
+}
+
+/* Dropdown and modal overlays */
+.dropdown-overlay,
+.modal-overlay {
+  -webkit-app-region: no-drag !important;
+  pointer-events: auto;
+}
+
+/* Make sure the entire navigation area is draggable */
+.nav-container {
+  -webkit-app-region: drag;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Interactive elements within nav should not be draggable */
+.nav-interactive {
+  -webkit-app-region: no-drag !important;
+  pointer-events: auto;
+}
+
+/* Fix table spacing that was affected by dragging styles */
+.scrollable-content table {
+  table-layout: auto;
+  width: 100%;
+}
+
+.scrollable-content table td,
+.scrollable-content table th {
+  padding: 1rem 1.5rem;
+}
+
+.scrollable-content table input,
+.scrollable-content table select,
+.scrollable-content table textarea {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Ensure proper spacing for form elements in tables */
+.scrollable-content table .flex.items-center.space-x-2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Fix button spacing in table cells */
+.scrollable-content table button {
+  padding: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Restore proper spacing for table rows */
+.scrollable-content tbody tr {
+  border-bottom: 1px solid;
+}
+
+.scrollable-content tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark .scrollable-content tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
