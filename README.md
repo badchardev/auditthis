@@ -1,4 +1,5 @@
 # 🧾 AuditThis!
+<img width="3000" height="3000" alt="Audit This" src="https://github.com/user-attachments/assets/d14f406b-b13a-4f78-8c87-0ad4577222f3" />
 
 **AuditThis!** was built over a weekend out of a simple need.
 
